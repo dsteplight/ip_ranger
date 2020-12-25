@@ -1,0 +1,7 @@
+ip_ranger.admin:
+  path: '/admin/config/system/ip_ranger'
+  defaults:
+    _title: 'IP Ranger Settings'
+    _form: '\Drupal\ip_ranger\Form\IpRangerSettingsForm'
+  requirements:
+    _permission: 'administer ip ranger module'

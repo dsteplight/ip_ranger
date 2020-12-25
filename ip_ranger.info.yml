@@ -1,0 +1,8 @@
+name: IP Ranger
+type: module
+description: 'A module to flag a user as being inside or outside a know network.'
+core: 8.x
+configure: ip_ranger.admin
+
+
+##TODO: create service that reads and settings user's IP address. https://www.drupal.org/node/2013014
