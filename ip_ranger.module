@@ -1,0 +1,26 @@
+<?php
+/**
+ * @file
+ * A description of what your module does.
+ */
+
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+
+/**
+ * Implements hook_help().
+ */
+function ip_ranger_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match)
+{
+  switch ($route_name) {
+    // Help page for IP Ranger Module.
+    case 'help.page.ip_ranger':
+      $output = "";
+      $output .= "<h3>" . t("IP Ranger Module") . "</h3>";
+      $output .= "<p>" . t("This Module implements business logic to determine if a site user is in or out of your know Network.") . "</p>";
+      return $output;
+
+    default:
+  }
+}

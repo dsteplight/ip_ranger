@@ -1,0 +1,7 @@
+ip_ranger.admin:
+  title: 'IP Ranger'
+  route_name: ip_ranger.admin
+  description: 'Manage Your IP Ranger Configuration Settings.'
+  parent: system.admin_config_system
+  weight: 199
+

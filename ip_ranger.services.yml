@@ -1,0 +1,6 @@
+services:
+  ip_ranger.event_subscriber:
+    class: Drupal\ip_ranger\EventSubscriber\IpRangerSubscriber
+    arguments: []
+    tags:
+      - { name: event_subscriber }
