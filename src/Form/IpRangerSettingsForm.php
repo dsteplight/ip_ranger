@@ -86,7 +86,7 @@ class IpRangerSettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     parent::submitForm($form, $form_state);
 
-    $this->config('arm_treasure.settings')
+    $this->config('ip_ranger.settings')
       ->set('ip_ranger_ipv4', $form_state->getValue('ip_ranger_ipv4'))
       ->save();
   }
@@ -100,7 +100,6 @@ class IpRangerSettingsForm extends ConfigFormBase {
    *   Druapl $form_state object.
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    $form_state->setErrorByName('ip_ranger_ipv4', $this->t('You have entered at least one invalid IpV4 address.'));
 
     //get clean array of IPv4 inputs
     $ipv4raw = $form_state->getValue('ip_ranger_ipv4');
@@ -118,8 +117,16 @@ class IpRangerSettingsForm extends ConfigFormBase {
     $ipv6rawcidrs = $form_state->getValue('ip_ranger_ipv6_cidrs');
     $valid_ipv6_cidrs = $this->getArrayOfIps($ipv6rawcidrs);
 
-    //check if entries are valid IPs
+    //set error messages if needed
     $valid_ip_v4s = $this->hasValidIps($ipv4s, "FILTER_FLAG_IPV4");
+   // ksm($valid_ip_v4s);
+    /*
+    var_dump($valid_ip_v4s);
+    if(is_array($valid_ip_v4s) &&  (!$valid_ip_v4s) ) {
+      $form_state->setErrorByName('ip_ranger_ipv4', $this->t('You have entered at least one invalid IpV4 address.'.$valid_ip_v4s));
+    }
+    */
+
     $valid_ip_v6s = $this->hasValidIps($ipv6s, "FILTER_FLAG_IPV6");
 
     //check if entries are valid CIDRs
