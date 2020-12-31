@@ -51,13 +51,13 @@ class IpRangerSettingsForm extends ConfigFormBase {
       '#type' => 'textarea',
       '#title' => $this->t('IPv4 CIDRS'),
       '#description' => $this->t('Paste your valid IpV4 CIDRs for you network into this field.'),
-      '#default_value' => $config->get('ip_ranger_ipv4_cidrs '),
+      '#default_value' => $config->get('ip_ranger_ipv4_cidrs'),
     ];
     $form['ip_ranger_ipv6_cidrs'] = [
       '#type' => 'textarea',
       '#title' => $this->t('IPv6 CIDRS'),
       '#description' => $this->t('Paste your valid IpV6 CIDRs for you network into this field.'),
-      '#default_value' => $config->get('ip_ranger_ipv6_cidrs '),
+      '#default_value' => $config->get('ip_ranger_ipv6_cidrs'),
     ];
     $form['ip_ranger_ipv4'] = [
       '#type' => 'textarea',
@@ -88,6 +88,9 @@ class IpRangerSettingsForm extends ConfigFormBase {
 
     $this->config('ip_ranger.settings')
       ->set('ip_ranger_ipv4', $form_state->getValue('ip_ranger_ipv4'))
+      ->set('ip_ranger_ipv6', $form_state->getValue('ip_ranger_ipv6'))
+      ->set('ip_ranger_ipv4_cidrs', $form_state->getValue('ip_ranger_ipv4_cidrs'))
+      ->set('ip_ranger_ipv6_cidrs', $form_state->getValue('ip_ranger_ipv6_cidrs'))
       ->save();
   }
 
@@ -119,22 +122,24 @@ class IpRangerSettingsForm extends ConfigFormBase {
 
     //set error messages if needed
     $valid_ip_v4s = $this->hasValidIps($ipv4s, "FILTER_FLAG_IPV4");
-   // ksm($valid_ip_v4s);
-    /*
-    var_dump($valid_ip_v4s);
-    if(is_array($valid_ip_v4s) &&  (!$valid_ip_v4s) ) {
-      $form_state->setErrorByName('ip_ranger_ipv4', $this->t('You have entered at least one invalid IpV4 address.'.$valid_ip_v4s));
+    if (is_array($valid_ip_v4s) || (!$valid_ip_v4s) ){
+      $form_state->setErrorByName('ip_ranger_ipv4', $this->t('Please review your IPv4 entry: '. implode(", ",$valid_ip_v4s)));
     }
-    */
 
     $valid_ip_v6s = $this->hasValidIps($ipv6s, "FILTER_FLAG_IPV6");
+    if (is_array($valid_ip_v6s) || (!$valid_ip_v6s) ){
+      $form_state->setErrorByName('ip_ranger_ipv6', $this->t('Please review your IPv6 entry: '. implode(", ",$valid_ip_v6s)));
+    }
 
-    //check if entries are valid CIDRs
     $valid_ip_v4s_cidrs = $this->hasValidIpCidrs($valid_ipv4_cidrs);
-    $valid_ip_v6s_cidrs = $this->hasValidIpCidrs($valid_ipv6_cidrs);
+    if (is_array($valid_ip_v4s_cidrs) || (!$valid_ip_v4s_cidrs) ){
+      $form_state->setErrorByName('ip_ranger_ipv4_cidrs', $this->t('Please review your IPv4 CIDRs entry: '. implode(", ",$valid_ip_v4s_cidrs)));
+    }
 
-    ksm($valid_ip_v4s_cidrs);
-    ksm($valid_ip_v6s_cidrs);
+    $valid_ip_v6s_cidrs = $this->hasValidIpCidrs($valid_ipv6_cidrs);
+    if (is_array($valid_ip_v6s_cidrs) || (!$valid_ip_v6s_cidrs) ){
+      $form_state->setErrorByName('ip_ranger_ipv6_cidrs', $this->t('Please review your IPv6 CIDRs entry: '. implode(", ",$valid_ip_v6s_cidrs)));
+    }
 
   }
 
@@ -203,8 +208,7 @@ class IpRangerSettingsForm extends ConfigFormBase {
 
     foreach ($cidrs as $ipvvalue) {
 
-      $validResult =   $this->validateCidr($ipvvalue);
-
+      $validResult =   $this->validateCidr($ipvvalue);/
       if($validResult === false){
         $bad_ip_vs[] = $ipvvalue;
       }
