@@ -208,7 +208,7 @@ class IpRangerSettingsForm extends ConfigFormBase {
 
     foreach ($cidrs as $ipvvalue) {
 
-      $validResult =   $this->validateCidr($ipvvalue);/
+      $validResult =   $this->validateCidr($ipvvalue);
       if($validResult === false){
         $bad_ip_vs[] = $ipvvalue;
       }
