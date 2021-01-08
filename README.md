@@ -1,7 +1,7 @@
 # ip_ranger
 Drupal 8 IP Ranger Module
 
-#Build
+# Build
 ![Super linter](https://github.com/dsteplight/ip_ranger/workflows/.github/workflows/superlinter.yml/badge.svg)
 
 ## Composer
