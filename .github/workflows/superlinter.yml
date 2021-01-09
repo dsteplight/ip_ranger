@@ -23,7 +23,7 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  Welcome Message:
+  welcome-message:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.0.0
