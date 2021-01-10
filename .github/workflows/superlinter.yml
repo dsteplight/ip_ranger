@@ -23,12 +23,13 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  welcome-message:
-    name: Welcome Message
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install Composer
-        uses: php-actions/composer@v5
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIPHY_TOKEN: ${{ secrets.GIPHY_TOKEN }}
+
+      # Updates Ubuntu
+      - name: Updates Ubuntu
+      - shell: bash
+        run: |
+          apt-get dist-upgrade
+          apt-get update
+
+
+
