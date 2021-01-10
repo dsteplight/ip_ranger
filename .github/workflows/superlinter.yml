@@ -26,7 +26,7 @@ jobs:
 
       # Updates Ubuntu
       - name: Updates Ubuntu
-      - shell: bash
+        shell: bash
         run: |
           apt-get dist-upgrade
           apt-get update
