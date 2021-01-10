@@ -17,6 +17,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Updates Ubuntu
+      - name: Updates Ubuntu
+        shell: bash
+        run: |
+          apt-get upgrade
+          apt-get dist-upgrade
+          apt-get update
+
       # Runs the Super-Linter action
       - name: Run Super-Linter
         uses: github/super-linter@v3
@@ -24,12 +32,7 @@ jobs:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Updates Ubuntu
-      - name: Updates Ubuntu
-        shell: bash
-        run: |
-          apt-get dist-upgrade
-          apt-get update
+
 
 
 
