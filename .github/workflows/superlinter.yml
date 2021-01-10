@@ -27,7 +27,7 @@ jobs:
     name: Welcome Message
     runs-on: ubuntu-latest
     steps:
-      -name: Install Composer
+      - name: Install Composer
         uses: php-actions/composer@v5
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
