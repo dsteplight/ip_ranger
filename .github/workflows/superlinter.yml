@@ -21,9 +21,9 @@ jobs:
       - name: Updates Ubuntu
         shell: bash
         run: |
-          sudo apt-get upgrade
-          sudo apt-get dist-upgrade
           sudo apt-get update
+          sudo apt-get dist-upgrade
+
 
       # Runs the Super-Linter action
       - name: Run Super-Linter
