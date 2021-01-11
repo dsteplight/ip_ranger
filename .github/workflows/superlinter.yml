@@ -24,6 +24,12 @@ jobs:
           sudo apt-get update
           sudo apt-get dist-upgrade
 
+      # Install Packages
+      - name: Install Packages
+        shell: bash
+        run: |
+          sudo apt-get install vim wget uzip curl
+          echo "hello world"
 
       # Runs the Super-Linter action
       - name: Run Super-Linter
