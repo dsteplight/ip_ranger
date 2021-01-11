@@ -28,7 +28,7 @@ jobs:
       - name: Install Packages
         shell: bash
         run: |
-          sudo apt-get install vim wget uzip curl
+          sudo apt-get install vim wget unzip zip curl
           echo "hello world"
 
       # Runs the Super-Linter action
