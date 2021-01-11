@@ -31,6 +31,13 @@ jobs:
           sudo apt-get install -y vim wget unzip zip curl tar rsync
           echo "hello world"
 
+      # Install Composer
+      - name: Install Composer
+        shell: bash
+        run: |
+          cd ~
+          sudo curl -sS https://getcomposer.org/installer -o composer-setup.php
+
       # Runs the Super-Linter action
       - name: Run Super-Linter
         uses: github/super-linter@v3
