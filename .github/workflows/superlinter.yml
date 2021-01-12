@@ -28,7 +28,7 @@ jobs:
       - name: Install Packages
         shell: bash
         run: |
-          sudo apt-get install -y vim wget unzip zip curl tar rsync tree
+          sudo apt-get install -y vim wget unzip zip curl tar rsync tree apache2
           echo "hello world"
 
       # Install Composer
