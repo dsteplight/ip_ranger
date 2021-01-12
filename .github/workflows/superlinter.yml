@@ -29,7 +29,6 @@ jobs:
         shell: bash
         run: |
           sudo apt-get install -y vim wget unzip zip curl tar rsync tree apache2
-          echo "hello world"
 
       # Install Composer
       - name: Install Composer
@@ -40,9 +39,14 @@ jobs:
           HASH=`curl -sS https://composer.github.io/installer.sig`
           echo $HASH
           php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-          pwd
-          cd /var/www/
-          ls -la
+
+      # Install Drupal 8
+      - name: Install Drupal 8
+        shell: bash
+        run: |
+          cd /var/www/html/
+          composer create-project drupal/recommended-project:8.9.11 /var/www/html/drupal_8_9_11/
+          ls -la /var/www/html/
 
       # Runs the Super-Linter action
       - name: Run Super-Linter
