@@ -18,11 +18,11 @@ jobs:
         uses: actions/checkout@v2
 
       # Updates Ubuntu
-      - name: Updates Ubuntu
-        shell: bash
-        run: |
-          sudo apt-get update
-          sudo apt-get dist-upgrade
+     # - name: Updates Ubuntu
+      #  shell: bash
+       # run: |
+        #  sudo apt-get update
+         # sudo apt-get dist-upgrade
 
       # Install Packages
       - name: Install Packages
