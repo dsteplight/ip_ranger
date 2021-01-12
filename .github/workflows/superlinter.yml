@@ -28,7 +28,7 @@ jobs:
       - name: Install Packages
         shell: bash
         run: |
-          sudo apt-get install -y vim wget unzip zip curl tar rsync
+          sudo apt-get install -y vim wget unzip zip curl tar rsync tree
           echo "hello world"
 
       # Install Composer
@@ -41,7 +41,7 @@ jobs:
           echo $HASH
           php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
           pwd
-          ls -la /var/www/html
+          ls -la /var/
 
 
 
