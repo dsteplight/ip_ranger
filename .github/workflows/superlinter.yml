@@ -45,7 +45,7 @@ jobs:
         shell: bash
         run: |
           cd /var/www/html/
-          composer create-project drupal/recommended-project:8.9.11 /var/www/html/drupal_8_9_11/
+          sudo composer create-project drupal/recommended-project:8.9.11 /var/www/html/drupal_8_9_11/
           ls -la /var/www/html/
 
       # Runs the Super-Linter action
