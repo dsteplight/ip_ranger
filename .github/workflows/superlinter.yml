@@ -40,24 +40,6 @@ jobs:
           coverage: xdebug
           tools: phpunit, composer:v2
 
-      - name: Setup PCOV
-        run: |
-          composer require pcov/clobber
-          vendor/bin/pcov clobber
-
-
-
-
-      # Install Composer
-     # - name: Install Composer
-      #  shell: bash
-       # run: |
-        #  cd ~
-         # sudo curl -sS https://getcomposer.org/installer -o composer-setup.php
-          #HASH=`curl -sS https://composer.github.io/installer.sig`
-          #echo $HASH
-          #php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-
       # Install Drupal 8
       - name: Install Drupal 8
         shell: bash
