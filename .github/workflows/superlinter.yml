@@ -46,9 +46,9 @@ jobs:
         run: |
           cd /var/www/html/
           sudo composer create-project drupal/recommended-project:8.9.11 /var/www/html/drupal_8_9_11/
-          ls -la /var/www/html/drupal_8_9_11/
+          ls -la /var/www/html/drupal_8_9_11/web/
           php -v
-          which phpunit
+          phpunit -v
 
       # Runs the Super-Linter action
       - name: Run Super-Linter
