@@ -14,8 +14,8 @@ jobs:
 
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@v2
+     # - name: Checkout code
+      #  uses: actions/checkout@v2
 
       # Updates Ubuntu
      # - name: Updates Ubuntu
@@ -30,15 +30,33 @@ jobs:
         run: |
           sudo apt-get install -y vim wget unzip zip curl tar rsync tree apache2
 
-      # Install Composer
-      - name: Install Composer
-        shell: bash
+      #Install PHP and tools
+      - name: Setup PHP with no coverage driver
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.3'
+          extensions: mbstring, intl
+          ini-values: post_max_size=256M, max_execution_time=180
+          coverage: xdebug
+          tools: phpunit, composer:v2
+
+      - name: Setup PCOV
         run: |
-          cd ~
-          sudo curl -sS https://getcomposer.org/installer -o composer-setup.php
-          HASH=`curl -sS https://composer.github.io/installer.sig`
-          echo $HASH
-          php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+          composer require pcov/clobber
+          vendor/bin/pcov clobber
+
+
+
+
+      # Install Composer
+     # - name: Install Composer
+      #  shell: bash
+       # run: |
+        #  cd ~
+         # sudo curl -sS https://getcomposer.org/installer -o composer-setup.php
+          #HASH=`curl -sS https://composer.github.io/installer.sig`
+          #echo $HASH
+          #php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 
       # Install Drupal 8
       - name: Install Drupal 8
