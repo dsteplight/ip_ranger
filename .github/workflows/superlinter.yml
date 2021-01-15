@@ -30,9 +30,8 @@ jobs:
         run: |
           sudo apt-get install -y vim wget unzip zip curl tar rsync tree apache2
 
-      # Install Git
-      - name: Git Version
-        uses: codacy/git-version@2.2.0
+      - name: Print github workspace
+        run: echo $GITHUB_WORKSPACE
 
       #Install PHP and tools
       - name: Setup PHP with no coverage driver
