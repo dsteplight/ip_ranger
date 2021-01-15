@@ -31,7 +31,9 @@ jobs:
           sudo apt-get install -y vim wget unzip zip curl tar rsync tree apache2
 
       - name: Print github workspace
-        run: echo $GITHUB_WORKSPACE
+        run: |
+          echo $GITHUB_WORKSPACE
+          ls -la /home/runner/work/ip_ranger/ip_ranger/
 
       #Install PHP and tools
       - name: Setup PHP with no coverage driver
