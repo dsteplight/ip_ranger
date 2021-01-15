@@ -30,6 +30,10 @@ jobs:
         run: |
           sudo apt-get install -y vim wget unzip zip curl tar rsync tree apache2
 
+      # Install Git
+      - name: Git Version
+        uses: codacy/git-version@2.2.0
+
       #Install PHP and tools
       - name: Setup PHP with no coverage driver
         uses: shivammathur/setup-php@v2
@@ -48,7 +52,6 @@ jobs:
           sudo composer create-project drupal/recommended-project:8.9.11 /var/www/html/drupal_8_9_11/
           ls -la /var/www/html/drupal_8_9_11/web/
         ## uncoment this once ready to run phpunti  cd /var/www/html/drupal_8_9_11/web/core/
-
 
       # Runs the Super-Linter action
       - name: Run Super-Linter
