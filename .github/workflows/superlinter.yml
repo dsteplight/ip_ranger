@@ -1,5 +1,6 @@
 name: Super-Linter
-
+env:
+  NOW: $(($(date +%s%N)/1000000))
 # Run this workflow every time a new commit pushed to your repository
 on: push
 
