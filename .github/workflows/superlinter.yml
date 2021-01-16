@@ -52,9 +52,13 @@ jobs:
         run: |
           cd /var/www/html/
           sudo composer create-project drupal/recommended-project:8.9.11 /var/www/html/drupal_8_9_11/
+
+      - name: Populate Custom Module Directory
+        shell: bash
+        run: |
           sudo mkdir -p /var/www/html/drupal_8_9_11/web/modules/custom/
-          ls -la /var/www/html/drupal_8_9_11/web/modules/
-        ## uncoment this once ready to run phpunti  cd /var/www/html/drupal_8_9_11/web/core/
+          sudo cp -avr /home/runner/work/ip_ranger /var/www/html/drupal_8_9_11/web/modules/custom
+          ls -la /var/www/html/drupal_8_9_11/web/modules/custom
 
       # Runs the Super-Linter action
       - name: Run Super-Linter
