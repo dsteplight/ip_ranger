@@ -15,8 +15,8 @@ jobs:
 
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
-     # - name: Checkout code
-      #  uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       # Updates Ubuntu
      # - name: Updates Ubuntu
